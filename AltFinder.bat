@@ -1,9 +1,10 @@
 @echo off
 del /f %appdata%\SS\Alts.txt 2>nul
+mkdir %appdata%\SS
 setlocal enabledelayedexpansion
 if exist C:\Users\%username%\.lunarclient\settings\game\accounts.json (
     echo ==Lunar Accounts== >> %appdata%\SS\Alts.txt
-    findstr /C:"name" C:\Users\%username%\.lunarclient\settings\game\accounts.json >> %appdata%\SS\Alts.txt
+    findstr /C:"username" C:\Users\%username%\.lunarclient\settings\game\accounts.json >> %appdata%\SS\Alts.txt
 )
 if exist %appdata%\.minecraft (
 echo ==.minecraft Accounts== >> %appdata%\SS\Alts.txt
